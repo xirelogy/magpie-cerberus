@@ -39,7 +39,8 @@ class RoleDefinition extends BaseDefinition implements CommonRole
     {
         if (!$this->isNeedTenant && $this->isRoot) {
             // System wide root
-            return Storage::instance()->featuresMap->getObjects();
+            yield from Storage::instance()->featuresMap->getObjects();
+            return;
         }
 
         yield from $this->features;
